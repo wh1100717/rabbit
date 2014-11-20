@@ -1,0 +1,20 @@
+{
+  "name": "moon",
+  "version": "0.0.1",
+  "main": [
+    "less/moon.less",
+    "dist/css/moon.css",
+    "dist/css/moon.js"
+  ],
+  "ignore": [
+    ".*",
+    "docs"
+  ],
+  "devDependencies": {
+    "jquery": "~1.11.1",
+    "bootstrap": "~3.2.0"
+  },
+  "resolutions": {
+    "jquery": ">= 1.9.1"
+  }
+}
