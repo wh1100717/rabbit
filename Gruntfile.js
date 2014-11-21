@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         stripBanners: false
       },
       dist: {
-        src: ['js/*.js'],
+        src: ['<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.core.js', '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.widget.js', '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.mouse.js', '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.position.js', '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.button.js', '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.slider.js', '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.effect.js', '<%= bower_conf.directory %>/jquery-ui-touch-punch/jquery.ui.touch-punch.js', '<%= bower_conf.directory %>/bootstrap-switch/dist/js/bootstrap-switch.js', '<%= bower_conf.directory %>/bootstrap-tagsinput/dist/bootstrap-tagsinput.js', '<%= bower_conf.directory %>/holderjs/holder.js', '<%= bower_conf.directory %>/typeahead.js/dist/typeahead.bundle.js', '<%= bower_conf.directory %>/videojs/dist/video-js/video.js', '<%= bower_conf.directory %>/select2/select2.js', 'js/*.js'],
         dest: 'dist/js/<%= pkg.name %>.js'
       }
     },
@@ -81,10 +81,17 @@ module.exports = function(grunt) {
         src: ['fonts/**', 'img/**'],
         dest: 'dist/'
       },
+      distVenodrJS: {
+        expand: true,
+        flatten: true,
+        cwd: './bower_components',
+        src: ['jquery/dist/jquery.min.js', 'jquery/dist/jquery.min.map', 'bootstrap/dist/js/bootstrap.min.js'],
+        dest: 'dist/js/vendor/'
+      },
       distVendorCSS: {
         expand: true,
         flatten: true,
-        cwd: '<%= bower_conf.directory %>',
+        cwd: './bower_components',
         src: ['bootstrap/dist/css/bootstrap.min.css'],
         dest: 'dist/css/vendor/'
       }
@@ -105,13 +112,13 @@ module.exports = function(grunt) {
     watch: {
       less: {
         files: 'less/**/*.less',
-        tasks: ['less', 'autoprefixer']
+        tasks: ['less']
       },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
-        files: ['{,*/}*.html', '{docs,dist}/**/css/{,*/}*.css', '{docs,dist}/**/js/{,*/}*.js']
+        files: ['{,*/}*.html', '{assets,dist}/**/css/{,*/}*.css', '{assets,dist}/**/js/{,*/}*.js']
       }
     }
   });
@@ -121,7 +128,7 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
   grunt.registerTask('build-js', ['concat', 'uglify']);
   grunt.registerTask('build-css', ['less', 'usebanner', 'csscomb', 'cssmin']);
-  grunt.registerTask('build-copy', ['copy:dist', 'copy:distVendorCSS']);
+  grunt.registerTask('build-copy', ['copy:dist', 'copy:distVenodrJS', 'copy:distVendorCSS']);
   grunt.registerTask('build', ['clean', 'build-js', 'build-css', 'build-copy']);
   grunt.registerTask('server', ['less', 'connect:livereload', 'watch']);
   grunt.registerTask('serve', ['server']);

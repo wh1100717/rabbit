@@ -1,10 +1,10 @@
 {
-  "name": "moon",
+  "name": "rabbit",
   "version": "0.0.1",
   "main": [
-    "less/moon.less",
-    "dist/css/moon.css",
-    "dist/css/moon.js"
+    "less/rabbit.less",
+    "dist/css/rabbit.css",
+    "dist/css/rabbit.js"
   ],
   "ignore": [
     ".*",
@@ -12,7 +12,18 @@
   ],
   "devDependencies": {
     "jquery": "~1.11.1",
-    "bootstrap": "~3.2.0"
+    "jquery-ui": "~1.10.4",
+    "bootstrap": "~3.2.0",
+    "bootstrap-switch": "~3.0.2",
+    "holderjs": "~2.4.0",
+    "html5shiv": "~3.7.2",
+    "jquery-ui-touch-punch": "*",
+    "respond": "~1.4.2",
+    "typeahead.js": "~0.10.5",
+    "google-code-prettify": "~1.0.3",
+    "bootstrap-tagsinput": "~0.4.2",
+    "videojs": "~4.7.2",
+    "select2": "~3.5.1"
   },
   "resolutions": {
     "jquery": ">= 1.9.1"
